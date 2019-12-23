@@ -21,4 +21,3 @@ clean: ## Removes the virtual env
 	@echo "Cleaning up..."
 	@rm -r -f tmp/ .venv
 	@echo "All Done"
-  
