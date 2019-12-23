@@ -12,10 +12,16 @@
       when: ansible_os_family == "Debian"
   when: python_install_build_requirements | bool
 
+- name: Ensure source installation path exists
+  file:
+    dest: "{{ python_source_installation_path }}"
+    state: directory
+
 - name: Ensure installation path exists
   file:
-    dest: "{{ python_installation_path }}"
+    dest: "{{ python_custom_installation_path }}"
     state: directory
+  when: python_custom_installation_path | length > 0
 
 - name: Download Python source code
   get_url:
@@ -26,7 +32,7 @@
 - name: Extract Python source code
   unarchive:
     src: "{{ python_download.dest }}"
-    dest: "{{ python_installation_path }}"
+    dest: "{{ python_source_installation_path }}"
     remote_src: true
     extra_opts:
       - --strip=1
@@ -36,16 +42,16 @@
   command:
   args:
     cmd: ./configure {{ python_configure_parameters | join(' ') }}
-    chdir: "{{ python_installation_path }}"
+    chdir: "{{ python_source_installation_path }}"
   changed_when: false
 
 - name: Build the default make target
   make:
-    chdir: "{{ python_installation_path }}"
+    chdir: "{{ python_source_installation_path }}"
   changed_when: false
 
 - name: Build the make target "{{ python_make_target }}"
   make:
     target: "{{ python_make_target }}"
-    chdir: "{{ python_installation_path }}"
+    chdir: "{{ python_source_installation_path }}"
   changed_when: false

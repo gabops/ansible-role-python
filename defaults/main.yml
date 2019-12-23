@@ -1,7 +1,9 @@
 ---
 python_version: 3.8.1
 
-python_installation_path: /opt/Python/3.8.1
+python_source_installation_path: /opt/Python/source/3.8.1
+
+python_custom_installation_path: ""
 
 python_build_requirements: ""
 
