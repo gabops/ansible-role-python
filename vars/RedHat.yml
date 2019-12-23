@@ -1,5 +1,6 @@
 ---
 __python_build_requirements:
+  - tar
   - xz
   - make
   - gcc
