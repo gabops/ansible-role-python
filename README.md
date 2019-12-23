@@ -15,7 +15,7 @@ Role Variables
 | Variable | Default value | Description |
 | :--- | :--- | :--- |
 | python_version | 3.8.1 | Defines the Python version to be installed. |
-| python_source_installation_path | /opt/Python/source/3.8.1 | Defines the path where the source code will be installed. Note that by default this does not mean that the Python binaries will be installed here as well. See notes. |
+| python_source_installation_path | /opt/Python/source/3.8.1 | Defines the path where the source code will be installed. |
 | python_custom_installation_path | "" | Defines a custom installation path to install Python in. Note that this parameter is not required. See Notes. |
 | python_build_requirements | "" | Defines the list of packages to be installed in order to build the source code. Note that this role handles its own list of packages already, however, this options exists for allowing you to define your own list of packages if required. |
 | python_install_build_requirements | true | Defines if the role should install building requirements (the internal or the ones specified by you in `python_build_requirements`). |
