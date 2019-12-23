@@ -1,0 +1,13 @@
+---
+python_version: 3.8.1
+
+python_installation_path: /opt/Python/3.8.1
+
+python_build_requirements: ""
+
+python_install_build_requirements: true
+
+python_configure_parameters:
+  - --with-ensurepip=install
+
+python_make_target: altinstall

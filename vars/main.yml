@@ -1,0 +1,2 @@
+---
+python_source_code_url: https://www.python.org/ftp/python/{{ python_version }}/Python-{{ python_version }}.tar.xz

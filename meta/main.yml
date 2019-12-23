@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  role_name: python
+  author: Gabriel Suarez
+  description: Installs Python from source code.
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+        - 8
+    - name: Amazon
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+        - buster
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+  galaxy_tags:
+    - python
+
+dependencies: []

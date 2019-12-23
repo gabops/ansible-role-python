@@ -1,0 +1,8 @@
+---
+- name: Include specific os family variable
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Set build requirements
+  set_fact:
+    python_build_requirements: "{{ __python_build_requirements }}"
+  when: python_build_requirements | length == 0

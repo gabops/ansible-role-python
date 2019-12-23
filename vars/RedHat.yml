@@ -1,0 +1,8 @@
+---
+__python_build_requirements:
+  - xz
+  - make
+  - gcc
+  - openssl-devel
+  - bzip2-devel
+  - sqlite-devel

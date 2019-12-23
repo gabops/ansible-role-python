@@ -1,0 +1,51 @@
+---
+- block:
+    - name: Install build requirements (RedHat)
+      yum:
+        name: "{{ python_build_requirements }}"
+      when: ansible_os_family == "RedHat"
+
+    - name: Install build requirements (Debian)
+      apt:
+        name: "{{ python_build_requirements }}"
+        update_cache: true
+      when: ansible_os_family == "Debian"
+  when: python_install_build_requirements | bool
+
+- name: Ensure installation path exists
+  file:
+    dest: "{{ python_installation_path }}"
+    state: directory
+
+- name: Download Python source code
+  get_url:
+    url: "{{ python_source_code_url }}"
+    dest: /tmp
+  register: python_download
+
+- name: Extract Python source code
+  unarchive:
+    src: "{{ python_download.dest }}"
+    dest: "{{ python_installation_path }}"
+    remote_src: true
+    extra_opts:
+      - --strip=1
+  register: python_extraction
+
+- name: Execute ./configure
+  command:
+  args:
+    cmd: ./configure {{ python_configure_parameters | join(' ') }}
+    chdir: "{{ python_installation_path }}"
+  changed_when: false
+
+- name: Build the default make target
+  make:
+    chdir: "{{ python_installation_path }}"
+  changed_when: false
+
+- name: Build the make target "{{ python_make_target }}"
+  make:
+    target: "{{ python_make_target }}"
+    chdir: "{{ python_installation_path }}"
+  changed_when: false
