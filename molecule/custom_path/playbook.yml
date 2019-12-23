@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    python_custom_installation_path: /opt/Python/installations/3.8.1
+    python_configure_parameters:
+      - --with-ensurepip=install
+      - --prefix="{{ python_custom_installation_path }}"
+    python_make_target: install
+  roles:
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
